@@ -1,0 +1,132 @@
+﻿<Page x:Class="AppForTests.ModuleStudent.ModuleTest.Presentation.Pages.TestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AppForTests.ModuleStudent.ModuleTest.Presentation.Pages" xmlns:domain="clr-namespace:AppForTests.ModuleStudent.ModuleTest.Domain"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TestPage"
+      Loaded="Page_Loaded">
+
+    <Page.DataContext>
+        <domain:TestPageViewModel/>
+    </Page.DataContext>
+
+    <Grid
+        Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Button
+            Content="Назад"
+            HorizontalAlignment="Left"
+            Command="{Binding BackCommand}"/>
+
+        <StackPanel
+            Grid.Row="1"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center">
+            <TextBlock Text="Ваше ФИО: "/>
+            <TextBlock Text="{Binding StudentFIO}"/>
+        </StackPanel>
+
+        <TextBlock
+            Grid.Row="2"
+            Text="{Binding CurrentTest.Title}"
+            HorizontalAlignment="Center"/>
+
+        <Border
+            Grid.Row="3"
+            BorderThickness="2"
+            Background="LightGray">
+            <TextBlock Text="{Binding CurrentQuestion.Title}"/>
+        </Border>
+
+        <TextBlock
+            Grid.Row="4"
+            Text="Выберите нужный ответ:"
+            HorizontalAlignment="Center"/>
+
+        <ListView
+            Grid.Row="5"
+            ItemsSource="{Binding CurrentQuestion.Answers}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Text="{Binding Title}"/>
+                        <CheckBox
+                            IsChecked="{Binding IsChecked}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+
+        <Grid
+            Grid.Row="6"
+            
+            VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition/>
+               <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock 
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="Времени на данный вопрос: "
+                HorizontalAlignment="Right"/>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="{Binding QuestionTimerLabel}"/>
+
+            <TextBlock 
+                Grid.Row="1"
+                Grid.Column="0"
+                Text="Времени на тест: "
+                HorizontalAlignment="Right"/>
+            <TextBlock 
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="{Binding TestTimerLabel}"/>
+        </Grid>
+
+        <Grid
+            Grid.Row="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            
+            <Button 
+                Grid.Column="0"
+                Content="Далее"
+                Command="{Binding NextQuestionCommand}"/>
+            <Button 
+                Grid.Column="1"
+                Content="Завершить"
+                Command="{Binding FinishCommand}"/>
+        </Grid>
+    </Grid>
+</Page>

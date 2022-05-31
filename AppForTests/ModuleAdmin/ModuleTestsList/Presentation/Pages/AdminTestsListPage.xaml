@@ -1,0 +1,109 @@
+﻿<Page x:Class="AppForTests.ModuleAdmin.ModuleTestsList.Presentation.Pages.AdminTestsListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AppForTests.ModuleAdmin.ModuleTestsList.Presentation.Pages" xmlns:domain="clr-namespace:AppForTests.ModuleAdmin.ModuleTestsList.Domain"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminTestsListPage"
+      Loaded="Page_Loaded">
+    <Page.DataContext>
+        <domain:AdminTestListViewModel/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ListView
+            ItemsSource="{Binding Tests}"
+            SelectedItem="{Binding SelectedTest}">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Title}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Grid
+            Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+            <StackPanel
+                Grid.Row="0"
+                Orientation="Horizontal">
+                <TextBlock Text="Тест: "/>
+                <TextBox Text="{Binding SelectedEditableTest.Tilte}"/>
+            </StackPanel>
+
+            <ListView
+                Grid.Row="1"
+                ItemsSource="{Binding SelectedEditableTest.Questions}"
+                SelectedItem="{Binding SelectedQuestion}">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="Вопрос">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Tilte}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Времени на вопрос">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding MaxTime}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <ListView
+                Grid.Row="2"
+                ItemsSource="{Binding SelectedQuestion.Answers}">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="Ответ">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Tilte}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Верный">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding IsRight}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <StackPanel
+                Grid.Row="3"
+                Orientation="Horizontal">
+                <Button
+                    Content="Сохранить"
+                    Command="{Binding Save}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

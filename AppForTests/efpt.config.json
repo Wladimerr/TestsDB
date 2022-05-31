@@ -1,0 +1,63 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "TestsdbContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": true,
+   "ModelNamespace": null,
+   "OutputContextPath": "Shared\/Domain",
+   "OutputPath": "Shared\/Models\/DbModels",
+   "ProjectRootNamespace": "AppForTests",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[Answers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AnswersHistory]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Questions]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[QuestionsHistory]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Tests]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TestsHistory]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Users]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "NHPC\\SQLEXPRESS.TestsDB",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}

@@ -1,0 +1,80 @@
+﻿<Page x:Class="AppForTests.ModuleAuth.Presentation.LogInPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AppForTests.ModuleAuth.Presentation" xmlns:domain="clr-namespace:AppForTests.ModuleAuth.Domain"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="LogInPage"
+      Loaded="Page_Loaded">
+    <Page.DataContext>
+        <domain:LogInViewModel/>
+    </Page.DataContext>
+    <Grid
+        Background="White">
+
+        <StackPanel
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            
+            <TextBlock 
+                Text="Вход"
+                HorizontalAlignment="Center"
+                Margin="4"/>
+
+            <StackPanel
+                HorizontalAlignment="Center">
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0, 6">
+                    <TextBlock Text="Логин: "/>
+                    <ComboBox 
+                        IsEditable="True"
+                        Width="250"
+                        ItemsSource="{Binding LoginsList}"
+                        Text="{Binding Login}"/>
+                </StackPanel>
+
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0, 6">
+                    <TextBlock Text="Пароль: "/>
+                    <PasswordBox 
+                        x:Name="PasswordBox"
+                        Width="250"
+                        PasswordChanged="PasswordBox_PasswordChanged"/>
+                </StackPanel>
+            </StackPanel>
+
+            <Grid
+                HorizontalAlignment="Center"
+                Width="150">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button 
+                    Grid.Column="0"
+                    Content="Войти"
+                    Command="{Binding LoginCommand}"
+                    Margin="4"/>
+                <Button 
+                    Grid.Column="1"
+                    Content="Очистить"
+                    Command="{Binding ClearCommand}"
+                    Margin="4"/>
+            </Grid>
+
+            <Button 
+                Content="Регистрация"
+                HorizontalAlignment="Center"
+                Width="150"
+                Command="{Binding GoToRegistrationCommand}"
+                Margin="4"/>
+        </StackPanel>
+        
+    </Grid>
+</Page>
